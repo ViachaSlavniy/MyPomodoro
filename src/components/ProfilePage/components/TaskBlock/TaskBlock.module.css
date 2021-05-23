@@ -1,0 +1,7 @@
+.createBlock {
+    display: flex;
+    justify-content: space-between;
+}
+.createInputs_task {
+    width: 100%;
+}
