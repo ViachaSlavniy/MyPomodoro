@@ -1,9 +1,9 @@
 import React from 'react';
 
-export const Task: React.FC = () => {
+export const LoginPage = () => {
     return (
         <div>
-            Task
+            LoginPage
         </div>
-    )
-}
+    );
+};

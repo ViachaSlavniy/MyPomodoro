@@ -1,10 +1,13 @@
 import React from 'react';
-import 'antd/dist/antd.css';
-import './App.css';
 import {Routes} from "./routes/Routes";
 import {NavLink} from "react-router-dom";
 import {Layout, Menu} from "antd";
+import 'antd/dist/antd.css';
+import './App.css';
+
+
 const { Header, Content, Footer } = Layout;
+
 
 
 
@@ -14,7 +17,7 @@ const App: React.FC = () => {
         <Header className="ant__header">
             <NavLink to="/">
                 <div className="logo">
-                    Logo
+                    My Pomodoro Tracker
                 </div>
             </NavLink>
           <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>

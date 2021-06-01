@@ -1,0 +1,18 @@
+.task {
+    margin-top: 5px;
+    padding: 5px 0;
+    border-top: 1px solid #000;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.category {
+    padding-left: 11px;
+    flex-basis: 15%;
+}
+
+.taskText {
+    flex-basis: 85%;
+}

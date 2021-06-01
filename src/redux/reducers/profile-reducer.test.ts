@@ -7,6 +7,7 @@ beforeEach(() => {
         tasks: [
             {id: 1, name: 'First task', category: 'personal'}
         ],
+        categories: [],
     }
 })
 
@@ -21,4 +22,7 @@ test('task must be deleted', () => {
     const newState = profileReducer(state, action);
 
     expect(newState.tasks.length).toBe(0);
+})
+test('category must be added', () => {
+
 })
