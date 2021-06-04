@@ -9,9 +9,8 @@ import './App.css';
 const { Header, Content, Footer } = Layout;
 
 
-
-
 const App: React.FC = () => {
+
   return (
       <Layout className="layout">
         <Header className="ant__header">

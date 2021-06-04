@@ -49,7 +49,8 @@ export const TaskBlock: React.FC<PropsType> = ({filterCategory, showTasks}) => {
                 <div className={`${style.createInputs} ${style.createInputs_category}`}>
                     <Input onChange={(e) => setCategory(e.target.value)}
                            placeholder="Категория"
-                           value={category}/>
+                           value={category}
+                    />
                 </div>
                 <div className={`${style.createInputs} ${style.createInputs_task}`}>
                     <Input placeholder="Короткое описание"
