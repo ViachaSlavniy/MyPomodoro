@@ -1,0 +1,17 @@
+.formWrapper {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 600px;
+}
+
+.formWrapper > form {
+    width: 500px;
+}
+
+.authButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

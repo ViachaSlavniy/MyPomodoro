@@ -5,7 +5,7 @@ import style from './ProfilePage.module.css';
 import {HistoryBlock} from "./components/HistoryBlock/HistoryBlock";
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
-import {useHistory, useLocation} from "react-router-dom";
+import {Redirect, useHistory, useLocation} from "react-router-dom";
 import QueryString from "querystring";
 import {Task} from "./components/TaskBlock/components/Task/Task";
 import {TaskType} from "../../redux/reducers/profile-reducer";
@@ -13,7 +13,8 @@ import {TaskType} from "../../redux/reducers/profile-reducer";
 export const ProfilePage = () => {
     const history = useHistory();
     const location = useLocation();
-    const doneTasks = useSelector((state: RootState) => state.profile.taskDone.items)
+    const isAuth = useSelector((state: RootState) => state.auth.isAuth);
+    const doneTasks = useSelector((state: RootState) => state.profile.taskDone.items);
     const parsedQuery = QueryString.parse(location.search.substr(1)) as QueryStringType;
 
     const filterCategory = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,6 +33,10 @@ export const ProfilePage = () => {
                 chooseTasks.map(task => <Task key={task.id} {...task}/>)
             )
         }
+    }
+
+    if (!isAuth) {
+        return <Redirect to='login' />
     }
 
     return (

@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../../redux/store";
 import {actions} from "../../../../redux/reducers/profile-reducer";
 import {SchemeType} from "../../../../redux/reducers/settings-reducer";
-import { Alert } from 'antd';
+import {message} from 'antd';
 import style from './TimerBlock.module.css';
 
 
@@ -37,6 +37,9 @@ export const TimerBlock: React.FC = () => {
     const [strTimer, setStrTimer] = useState<number | string>(`${workTimeMinutes} : 00`);
     const [timerId, setTimerId] = useState(0);
 
+    const showTaskDoneAlert = () => {
+        message.success('Сделайте короткий перерыв!');
+    };
     const createInterval = (time: number, startOrBreak: string, audio: HTMLAudioElement | null ) => {
         const timerId = window.setInterval(() => {
             let minutes: number | string = Math.floor(time / 60 % 60);
@@ -63,6 +66,7 @@ export const TimerBlock: React.FC = () => {
                     if (tasks.length > 0) {
                         const {id, catId, category} = tasks[0];
                         dispatch(actions.taskDone(id, catId, category));
+                        showTaskDoneAlert();
                     }
                     return
                 }
@@ -80,6 +84,18 @@ export const TimerBlock: React.FC = () => {
         }, 1000)
         setTimerId(timerId);
     }
+    const showButtons = () => {
+        return (
+            timerState.start && timerState.pause
+                ? <button onClick={continueTimer}>Продолжить</button>
+                : timerState.start
+                ? <button onClick={pauseTimer}>Пауза</button>
+                : <button onClick={startTimer}>Старт</button>
+        )
+    }
+
+
+    // Timer functions
 
     const breakTime = () => {
         createInterval(timerState.shortBreakTime, 'break', audioFinishBreak);
@@ -105,19 +121,10 @@ export const TimerBlock: React.FC = () => {
         setStrTimer(() => `${workTimeMinutes} : 00`)
     }
 
-    const showButtons = () => {
-       return (
-           timerState.start && timerState.pause
-               ? <button onClick={continueTimer}>Продолжить</button>
-               : timerState.start
-                    ? <button onClick={pauseTimer}>Пауза</button>
-                    : <button onClick={startTimer}>Старт</button>
-       )
-    }
+
 
     return (
         <>
-            <Alert message="Success Text" type="success" />
             <div className={timerState.break ? style.break : style.timerBlock}>
                 <div className={style.timer}>
                     <div className={style.display}>{strTimer}</div>
